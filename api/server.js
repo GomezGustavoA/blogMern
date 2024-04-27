@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const routes = require("./src/routes/mainRoutes");
+const CustomError = require("./src/utils/handlerErrors");
 require("dotenv").config();
 
 const server = express();

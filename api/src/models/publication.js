@@ -4,10 +4,12 @@ const publicationSchema = mongoose.Schema({
   title: {
     type: String,
     require: true,
+    maxlength: 100,
   },
   content: {
     type: String,
     require: true,
+    maxlength: 5000,
   },
   image: {
     type: String,
