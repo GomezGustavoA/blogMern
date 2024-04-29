@@ -32,6 +32,12 @@ const publicationSchema = mongoose.Schema({
       ref: "User",
     },
   ],
+  comment: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Publication", publicationSchema);

@@ -9,11 +9,8 @@ module.exports = {
   validImage: (image) => {
     return /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(image);
   },
-  validateTitleLength: (title) => {
-    return title.length <= 100;
-  },
-  validateContentLength: (content) => {
-    return content.length <= 5000;
+  validateContentLength: (content, value) => {
+    return content.length <= value;
   },
   isIdMongoose: (id) => {
     return typeof id === "string" && mongoose.Types.ObjectId.isValid(id);

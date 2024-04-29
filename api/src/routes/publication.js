@@ -17,5 +17,6 @@ router.delete(
   middle.verifyToken,
   postController.deletePostsById
 );
+router.put("/likes", middle.verifyToken, postController.putToggleLike);
 
 module.exports = router;

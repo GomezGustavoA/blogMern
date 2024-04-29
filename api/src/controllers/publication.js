@@ -68,6 +68,9 @@ module.exports = {
           context: "query",
         }
       );
+      if (!updatePost) {
+        throw new CustomError(400, "No publication found");
+      }
       res.status(200).json({
         message: "the publication is successfully modified",
         updatePost,
@@ -96,6 +99,19 @@ module.exports = {
       res
         .status(200)
         .json({ message: "The publication was successfully deleted." });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({ error: error.message });
+    }
+  },
+  putToggleLike: async (req, res) => {
+    try {
+      const newToggleLike = await dataTransform.toggleLike(
+        Publication,
+        req.body.publication,
+        req.user.id
+      );
+
+      res.status(200).json(newToggleLike);
     } catch (error) {
       res.status(error.statusCode || 500).json({ error: error.message });
     }

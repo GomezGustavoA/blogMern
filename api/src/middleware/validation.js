@@ -30,10 +30,10 @@ module.exports = {
       } else {
         req.body = removeSpacesFromObjectValues(req.body);
       }
-      if (!utils.validateTitleLength(req.body.title)) {
+      if (!utils.validateContentLength(req.body.title, 100)) {
         throw new CustomError(400, "Lalongitud de titulo supera el limite.");
       }
-      if (!utils.validateContentLength(req.body.title)) {
+      if (!utils.validateContentLength(req.body.content, 5000)) {
         throw new CustomError(400, "Lalongitud de titulo supera el limite.");
       }
       if (!utils.validImage(req.body.image)) {
@@ -41,6 +41,25 @@ module.exports = {
           400,
           "Verificar que el formato de los campos estén correctos."
         );
+      }
+
+      next();
+    } catch (error) {
+      res.status(error.status || 500).json({ error: error.message });
+    }
+  },
+  commentValidation: (req, res, next) => {
+    try {
+      if (Object.keys(req.body).length === 0) {
+        throw new CustomError(400, "req.body está vacío.");
+      }
+      if (!utils.allValuesNotEmpty(req.body)) {
+        throw new CustomError(400, "Uno o más campos están vacíos.");
+      } else {
+        req.body = removeSpacesFromObjectValues(req.body);
+      }
+      if (!utils.validateContentLength(req.body.text, 2000)) {
+        throw new CustomError(400, "Lalongitud de titulo supera el limite.");
       }
 
       next();
