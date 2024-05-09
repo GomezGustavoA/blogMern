@@ -1,0 +1,12 @@
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333; /* Color de fondo del header */
+  color: #fff; /* Color del texto */
+}
+
+.Logo img {
+  height: 40px; /* Ajusta la altura del logo según sea necesario */
+}

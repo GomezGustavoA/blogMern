@@ -1,0 +1,9 @@
+.homeContainer {
+  display: grid;
+  grid-template-rows: 60px auto;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

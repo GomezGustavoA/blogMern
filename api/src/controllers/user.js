@@ -8,15 +8,28 @@ const jwt = require("jsonwebtoken");
 module.exports = {
   createUser: async (req, res) => {
     try {
+      const existingUsername = await User.findOne({
+        userName: req.body.userName,
+      });
+      if (existingUsername) {
+        throw new CustomError(400, "userName");
+      }
+
+      const existingEmail = await User.findOne({ email: req.body.email });
+      if (existingEmail) {
+        throw new CustomError(400, "email");
+      }
       const passwordHash = await bcrypt.hash(req.body.password, 12);
       req.body.password = passwordHash;
 
       const cleanData = dataTrans.removeSpacesFromObjectValues(req.body);
       await User.create(cleanData); // campos a guardar: name, userName, email, password, rol, image
 
-      res.status(201).json({ message: "user created successfully" });
+      res
+        .status(201)
+        .json({ success: true, message: "user created successfully" });
     } catch (error) {
-      res.status(error.status || 500).json({ error: error.message });
+      res.status(error.statusCode || 500).json({ error: error.message });
     }
   },
   loginUser: async (req, res) => {
@@ -50,7 +63,7 @@ module.exports = {
         user: { userName, image, rol },
       });
     } catch (error) {
-      res.status(error.status || 500).json({ error: error.message });
+      res.status(error.statusCode || 500).json({ error: error.message });
     }
   },
   getUserById: async (req, res) => {
