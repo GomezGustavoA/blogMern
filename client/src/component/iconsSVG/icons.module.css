@@ -1,0 +1,7 @@
+.password {
+  fill: #e8eaed;
+  transition: fill 0.3s ease;
+}
+.password:hover {
+  fill: #4caf50;
+}

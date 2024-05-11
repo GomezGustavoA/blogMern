@@ -39,7 +39,7 @@ module.exports = {
       }
       const cleanData = dataTrans.removeSpacesFromObjectValues(req.body);
       const user = await User.findOne({ userName: cleanData.userName });
-
+      console.log(req.body);
       if (!user || !(await bcrypt.compare(cleanData.password, user.password))) {
         throw new CustomError(400, "Invalid credentials");
       }

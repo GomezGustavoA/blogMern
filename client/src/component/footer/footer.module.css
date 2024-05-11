@@ -1,6 +1,7 @@
+@import "../../utils/paletteColors.css";
 .footerContainer {
-  background-color: #333; /* Color de fondo del footer */
-  color: #fff; /* Color del texto */
+  background-color: var(--fotter-bg-color);
+  color: var(--Link-color);
   padding: 20px;
 }
 
@@ -21,7 +22,7 @@
 
 .Nav ul li a {
   text-decoration: none;
-  color: #fff; /* Color de los enlaces */
+  color: var(--Link-color); /* Color de los enlaces */
 }
 
 .OtherContent {

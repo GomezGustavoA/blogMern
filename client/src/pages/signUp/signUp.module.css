@@ -1,0 +1,39 @@
+.container {
+  width: 350px;
+  height: 375px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 90px 280px;
+  justify-content: center;
+  background-color: var(--bg-singin-up);
+  border-radius: 10px;
+  position: absolute; /* Cambia el posicionamiento del botón */
+  left: 50%; /* Coloca el botón en el centro horizontal */
+  top: 50%; /* Coloca el botón en el centro vertical */
+  transform: translate(-50%, -50%); /* Centra el botón */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.registerAndPhoto {
+  display: grid;
+  grid-template-columns: 200px 150px;
+}
+.container form {
+  height: auto;
+  display: grid;
+  grid-template-rows: 50px 50px 50px 50px 50px;
+  justify-content: center;
+}
+.container p {
+  font-size: 13px;
+  color: var(--p-text-suave);
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin: 0;
+  padding: 0;
+}
+.container span {
+  color: var(--button-submit-hover);
+}

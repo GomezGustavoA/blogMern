@@ -41,6 +41,19 @@ const notification = {
       transition: Bounce,
     });
   },
+  warning: (message) => {
+    toast.warn(message, {
+      position: "bottom-right",
+      autoClose: 3,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  },
 };
 
 export default notification;

@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux";
+import Avatar from "../avatarUser/AvatarUser";
 import Nav from "../nav/Nav";
 import styles from "./header.module.css";
+import DropdownMenu from "../dropdownMenu/DropdownMenu";
 
 const Header = () => {
+  const user = useSelector((state) => state.auth.user);
   const navLinks = [
     { to: "/", text: "Home" },
     { to: "/blog", text: "Blog" },
@@ -14,7 +18,13 @@ const Header = () => {
         <h3>My Blog</h3>
         {/* <img src="/ruta/al/logo.png" alt="Logo" /> */}
       </div>
-      <Nav links={navLinks} />
+      <div className={styles.navAndAvatar}>
+        <Nav links={navLinks} />
+        <DropdownMenu
+          avatar={<Avatar imageUrl={user?.image} width={40} />}
+          links={navLinks}
+        />
+      </div>
     </header>
   );
 };

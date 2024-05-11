@@ -1,0 +1,20 @@
+.container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+.container label {
+  width: 25px;
+  height: 25px;
+  position: absolute; /* Cambia el posicionamiento del botón */
+  right: 7px; /* Coloca el botón en el centro horizontal */
+  bottom: 10px; /* Coloca el botón en el centro vertical */
+  cursor: pointer;
+  border-radius: 50px;
+}
+.avatar {
+  position: absolute; /* Cambia el posicionamiento del botón */
+  left: 50%; /* Coloca el botón en el centro horizontal */
+  top: 50%; /* Coloca el botón en el centro vertical */
+  transform: translate(-50%, -50%); /* Centra el botón */
+}

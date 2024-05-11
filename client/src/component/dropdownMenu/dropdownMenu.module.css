@@ -1,0 +1,46 @@
+@import "../../utils/paletteColors.css";
+
+.container {
+  position: relative;
+}
+
+.avatar {
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100%); /* Coloca el menú justo debajo del avatar */
+  left: calc(100% - 75px);
+  z-index: 1; /* Asegura que el menú esté por encima del resto del contenido */
+  background-color: var(--input-bg-color);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade sombra al menú */
+}
+.menu::before {
+  content: "";
+  position: absolute;
+  top: -9px; /* Coloca el menú justo debajo del avatar */
+  left: 45px;
+  width: 15px;
+  height: 15px;
+  transform: rotate(45deg);
+  background-color: var(--input-bg-color);
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.menu li {
+  list-style-type: none;
+  padding: 8px 15px;
+}
+
+.menu li:hover {
+  background-color: var(--input-bg-color);
+}
+.menu a {
+  color: var(--Link-color);
+  text-decoration: none;
+}

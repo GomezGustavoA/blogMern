@@ -1,0 +1,14 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --accent-color: #ffc107;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --Link-color: #fff;
+  --input-bg-color: #3e3e3e;
+  --fotter-bg-color: #333;
+  --button-submit: #2f7533;
+  --button-submit-hover: #4caf50;
+  --p-text-suave: rgb(100, 98, 98);
+  --bg-singin-up: rgb(45, 43, 43);
+}

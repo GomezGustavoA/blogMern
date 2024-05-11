@@ -1,0 +1,16 @@
+.submitButton {
+  background-color: var(--button-submit); /* Color de fondo */
+  color: var(--Link-color); /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 12px; /* Tamaño de fuente */
+  border: none; /* Elimina el borde */
+  border-radius: 25px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: all 0.4s ease; /* Transición suave */
+}
+
+.submitButton:hover {
+  background-color: var(
+    --button-submit-hover
+  ); /* Cambia el color de fondo al pasar el cursor */
+}
