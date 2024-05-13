@@ -37,3 +37,9 @@
 .container span {
   color: var(--button-submit-hover);
 }
+.avatar {
+  position: absolute; /* Cambia el posicionamiento del botón */
+  left: 50%; /* Coloca el botón en el centro horizontal */
+  top: 50%; /* Coloca el botón en el centro vertical */
+  transform: translate(-50%, -50%); /* Centra el botón */
+}

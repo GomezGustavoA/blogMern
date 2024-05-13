@@ -10,12 +10,14 @@ const CustomInput = ({
   icon,
   onMouseEnter,
   onMouseOut,
+  width,
 }) => {
   return (
     <div
       className={styles.container}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
+      style={{ width: `${width}px` }}
     >
       <div className={styles.icons} onClick={onClick}>
         {icon}

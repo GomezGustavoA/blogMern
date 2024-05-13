@@ -3,46 +3,46 @@ import axios from "axios";
 import notification from "../notifications/notificarion";
 import textNotification from "../notifications/textNotification";
 
-export const signInAsync = createAsyncThunk(
-  "auth/signInAsync",
-  async (dataUser, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/users/auth/signin",
-        dataUser
-      );
-      return rejectWithValue(data);
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
+// export const signInAsync = createAsyncThunk(
+//   "auth/signInAsync",
+//   async (dataUser, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.post(
+//         "http://localhost:5000/api/users/auth/signin",
+//         dataUser
+//       );
+//       return rejectWithValue(data);
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
 
-export const signUpAsync = createAsyncThunk(
-  "auth/signUpAsync",
-  async (dataUser, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/users/auth/signup",
-        dataUser
-      );
-      return rejectWithValue(data);
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
+// export const signUpAsync = createAsyncThunk(
+//   "auth/signUpAsync",
+//   async (dataUser, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.post(
+//         "http://localhost:5000/api/users/auth/signup",
+//         dataUser
+//       );
+//       return rejectWithValue(data);
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   }
+// );
 
-const authSlice = createSlice({
-  name: "auth",
+const publicationSlice = createSlice({
+  name: "publication",
   initialState: {
-    user: null,
+    publication: null,
   },
   reducers: {
-    logout: (state, action) => {
-      localStorage.removeItem("token");
-      state.user = null;
-    },
+    // logout: (state, action) => {
+    //   localStorage.removeItem("token");
+    //   state.user = null;
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -52,8 +52,8 @@ const authSlice = createSlice({
         }
         const { user, token } = action.payload;
         state.user = user;
-        localStorage.setItem("token", token);
-        notification.success(textNotification.success.loginSuccess);
+        // localStorage.setItem("token", token);
+        // notification.success(textNotification.success.loginSuccess);
       })
       .addCase(signUpAsync.rejected, (state, action) => {
         const error = action.payload;
@@ -84,5 +84,5 @@ const authSlice = createSlice({
       });
   },
 });
-export const { logout } = authSlice.actions;
-export default authSlice.reducer;
+export const { logout } = publicationSlice.actions;
+export default publicationSlice.reducer;

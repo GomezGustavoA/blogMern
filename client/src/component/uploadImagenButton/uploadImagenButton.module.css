@@ -12,7 +12,7 @@
   cursor: pointer;
   border-radius: 50px;
 }
-.avatar {
+.avatar.inputPhoto {
   position: absolute; /* Cambia el posicionamiento del botón */
   left: 50%; /* Coloca el botón en el centro horizontal */
   top: 50%; /* Coloca el botón en el centro vertical */

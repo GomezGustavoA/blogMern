@@ -13,6 +13,7 @@ const publicationSchema = mongoose.Schema({
   },
   image: {
     type: String,
+    require: true,
     validate: {
       validator: function (url) {
         return /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(url);

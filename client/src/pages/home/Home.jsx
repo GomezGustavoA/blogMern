@@ -6,6 +6,7 @@ import ReactView from "../react/ReactView";
 import NodeView from "../node/Node";
 import Nav from "../../component/nav/Nav";
 import styles from "./home.module.css";
+import CreatePost from "../createPost/CreatePost";
 
 const Home = () => {
   const navLinks = [
@@ -14,6 +15,7 @@ const Home = () => {
     { to: "/express", text: "Express" },
     { to: "/react", text: "React" },
     { to: "/node", text: "Node" },
+    { to: "/createPost", text: "Create post" },
   ];
   return (
     <section className={styles.homeContainer}>
@@ -28,6 +30,8 @@ const Home = () => {
           <Route path="/express" element={<Express />} />
           <Route path="/react" element={<ReactView />} />
           <Route path="/Node" element={<NodeView />} />
+          <Route path="/createPost" element={<CreatePost />} />
+
           <Route path="*" element={<h2>no existe</h2>} />
         </Routes>
       </div>
