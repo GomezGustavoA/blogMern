@@ -11,13 +11,20 @@ const CustomInput = ({
   onMouseEnter,
   onMouseOut,
   width,
+  height,
+  spaceIcon,
+  spaceInput,
 }) => {
   return (
     <div
       className={styles.container}
       onMouseEnter={onMouseEnter}
       onMouseOut={onMouseOut}
-      style={{ width: `${width}px` }}
+      style={{
+        width: `${width}px`,
+        height: `${height}px`,
+        gridTemplateColumns: `${spaceIcon}% ${spaceInput}%`,
+      }}
     >
       <div className={styles.icons} onClick={onClick}>
         {icon}

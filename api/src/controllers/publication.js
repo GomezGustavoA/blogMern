@@ -5,12 +5,32 @@ const CustomError = require("../utils/handlerErrors");
 const { isIdMongoose } = require("../utils/validation");
 
 module.exports = {
+  // getPosts: async (req, res) => {
+  //   try {
+  //     const newListPost = await Publication.find();
+  //     if (newListPost.length === 0) {
+  //       throw new CustomError(400, "No publications found");
+  //     }
+  //     res.status(200).json(newListPost);
+  //   } catch (error) {
+  //     res.status(error.statusCode || 500).json({ error: error.message });
+  //   }
+  // },
   getPosts: async (req, res) => {
     try {
-      const newListPost = await Publication.find();
+      const newListPost = await Publication.find()
+        .populate("author")
+        .populate({
+          path: "comment",
+          populate: {
+            path: "author",
+          },
+        });
+
       if (newListPost.length === 0) {
         throw new CustomError(400, "No publications found");
       }
+
       res.status(200).json(newListPost);
     } catch (error) {
       res.status(error.statusCode || 500).json({ error: error.message });

@@ -1,5 +1,36 @@
+@import "../../utils/paletteColors.css";
 .container {
+  height: 50px;
   display: flex;
-  justify-content: center;
-  text-align: center;
+  align-items: center;
+}
+
+.image {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userInfo {
+  display: grid;
+  grid-template-rows: 20px 30px;
+  justify-content: start;
+  align-items: center;
+  margin: 0;
+}
+.userInfo h3 {
+  margin: 0;
+  text-align: start;
+  font-weight: 200;
+}
+.userInfo p {
+  margin: 0;
+  font-weight: 100;
+  color: var(--p-text-suave);
 }

@@ -60,11 +60,23 @@ module.exports = {
         message: "Successful login",
         access: true,
         token,
-        user: { userName, image, rol },
+        user: { userName, image, rol, id: _id },
       });
     } catch (error) {
       res.status(error.statusCode || 500).json({ error: error.message });
     }
+  },
+  loginForce: async (req, res) => {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      throw new CustomError(400, "User not found");
+    }
+    const { userName, image, _id, rol } = user;
+    res.status(200).json({
+      message: "Successful login",
+      access: true,
+      user: { userName, image, rol, id: _id },
+    });
   },
   getUserById: async (req, res) => {
     try {

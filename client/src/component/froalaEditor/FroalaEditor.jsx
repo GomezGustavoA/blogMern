@@ -18,7 +18,7 @@ const FroalaEditor = ({ handleContentChange }) => {
       config={{
         colorsBackground: ["#61BD6D", "#1ABC9C", "#54ACD2", "REMOVE"],
         height: 400,
-
+        pastePlain: true,
         linkInsertButtons: ["linkBack"],
       }}
     />

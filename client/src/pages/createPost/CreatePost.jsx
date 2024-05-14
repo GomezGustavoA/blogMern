@@ -7,17 +7,18 @@ import CustomSelection from "../../component/customSelect/CustomSelect";
 import Title from "../../component/iconsSVG/Title";
 import UploadImageButton from "../../component/uploadImagenButton/UploadImagenButton";
 import SubmitButton from "../../component/submitButton/SubmitButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { urls } from "../../utils/constant/urls";
 import axios from "axios";
+import { createPost } from "../../redux/publicationSlice";
 
 const CreatePost = () => {
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const [image, setImage] = useState();
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    author: "",
     image: "",
     theme: "",
   });
@@ -47,17 +48,16 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!formData.image) {
+      if (image) {
         const dataImage = new FormData();
         dataImage.append("file", image);
         dataImage.append("upload_preset", "Presets_blogMern");
-
         const { data } = await axios.post(urls.API_URL_CLOUDINARY, dataImage);
         console.log(data.secure_url);
         setFormData({ ...formData, image: data.secure_url });
       }
       // if (validationForm.validationSignup(formData)) {
-      //   dispatch(signUpAsync(formData));
+      dispatch(createPost(formData));
       // }
       console.log("Publicación creada:", formData);
     } catch (error) {
@@ -71,7 +71,7 @@ const CreatePost = () => {
   const handleContentChange = (newContent) => {
     setFormData({ ...formData, content: newContent });
   };
-
+  console.log(formData);
   return (
     <div className={styles.container}>
       <h2>Crea tu Publicación</h2>

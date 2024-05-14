@@ -1,0 +1,21 @@
+@import "../../utils/paletteColors.css";
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-singin-up);
+  border-radius: 20px;
+  padding: 4px 8px;
+}
+
+.label {
+  color: var(--p-text-suave-categoty);
+  margin: 1px;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  color: #757575;
+  cursor: pointer;
+}

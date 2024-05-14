@@ -5,6 +5,7 @@ const middle = require("../middleware/validation");
 
 router.post("/auth/signup", middle.userValidation, userController.createUser);
 router.post("/auth/signin", userController.loginUser);
+router.get("/auth/signin-force", middle.verifyToken, userController.loginForce);
 
 router.get("/:id", middle.verifyToken, userController.getUserById);
 router.get(

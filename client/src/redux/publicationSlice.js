@@ -3,86 +3,57 @@ import axios from "axios";
 import notification from "../notifications/notificarion";
 import textNotification from "../notifications/textNotification";
 
-// export const signInAsync = createAsyncThunk(
-//   "auth/signInAsync",
-//   async (dataUser, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post(
-//         "http://localhost:5000/api/users/auth/signin",
-//         dataUser
-//       );
-//       return rejectWithValue(data);
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+const token = localStorage.getItem("token");
+const config = {
+  headers: {
+    Authorization: token,
+  },
+};
 
-// export const signUpAsync = createAsyncThunk(
-//   "auth/signUpAsync",
-//   async (dataUser, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post(
-//         "http://localhost:5000/api/users/auth/signup",
-//         dataUser
-//       );
-//       return rejectWithValue(data);
-//     } catch (error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// );
+export const createPost = createAsyncThunk(
+  "publication/createPost",
+  async (dataPost) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/posts/create-post",
+        dataPost,
+        config
+      );
+      return notification.success(textNotification.success.postCreated);
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        return notification.error(textNotification.error.postError);
+      }
+    }
+  }
+);
+
+export const getPosts = createAsyncThunk("publication/getPosts", async () => {
+  try {
+    const { data } = await axios.get(
+      "http://localhost:5000/api/posts/",
+      config
+    );
+    return data;
+  } catch (error) {
+    if (error) {
+      return notification.error(textNotification.error.postError);
+    }
+  }
+});
 
 const publicationSlice = createSlice({
   name: "publication",
   initialState: {
     publication: null,
   },
-  reducers: {
-    // logout: (state, action) => {
-    //   localStorage.removeItem("token");
-    //   state.user = null;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(signInAsync.rejected, (state, action) => {
-        if (action.payload.response) {
-          return notification.error(textNotification.error.loginError);
-        }
-        const { user, token } = action.payload;
-        state.user = user;
-        // localStorage.setItem("token", token);
-        // notification.success(textNotification.success.loginSuccess);
-      })
-      .addCase(signUpAsync.rejected, (state, action) => {
-        const error = action.payload;
-
-        if (error && error.response && error.response.data) {
-          const errorCode = error.response.data.error;
-          console.log(errorCode);
-          switch (errorCode) {
-            case "userName":
-              return notification.error(
-                textNotification.info.duplicateUserError
-              );
-
-            case "email":
-              return notification.error(
-                textNotification.info.duplicateEmailError
-              );
-
-            default:
-              return notification.error(
-                textNotification.error.registrationError
-              );
-          }
-        }
-        return notification.success(
-          textNotification.success.registrationSuccess
-        );
-      });
+    builder.addCase(getPosts.fulfilled, (state, action) => {
+      state.publication = action.payload;
+    });
   },
 });
-export const { logout } = publicationSlice.actions;
+export const {} = publicationSlice.actions;
 export default publicationSlice.reducer;

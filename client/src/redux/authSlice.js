@@ -18,6 +18,24 @@ export const signInAsync = createAsyncThunk(
   }
 );
 
+export const signForce = createAsyncThunk("auth/signForce", async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    const { data } = await axios.get(
+      "http://localhost:5000/api/users/auth/signin-force",
+      config
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export const signUpAsync = createAsyncThunk(
   "auth/signUpAsync",
   async (dataUser, { rejectWithValue }) => {
@@ -81,6 +99,9 @@ const authSlice = createSlice({
         return notification.success(
           textNotification.success.registrationSuccess
         );
+      })
+      .addCase(signForce.fulfilled, (state, action) => {
+        state.user = action.payload.user;
       });
   },
 });

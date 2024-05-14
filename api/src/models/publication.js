@@ -16,11 +16,16 @@ const publicationSchema = mongoose.Schema({
     require: true,
     validate: {
       validator: function (url) {
-        return /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/i.test(url);
+        return /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(url);
       },
       message: (invalidURL) =>
         `${invalidURL.value} no es una URL de imagen válida`,
     },
+  },
+  theme: {
+    type: String,
+    require: true,
+    enum: ["MERN", "MongoDB", "Express", "React", "Node"],
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,

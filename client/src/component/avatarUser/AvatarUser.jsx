@@ -4,6 +4,7 @@ import styles from "./avatarUser.module.css";
 
 const Avatar = ({
   imageUrl = image,
+  userName,
   name = false,
   profession = false,
   width = 50,
@@ -11,28 +12,20 @@ const Avatar = ({
   return (
     <div
       className={styles.container}
-      style={{
-        width: name ? "auto" : `${width}px`,
-      }}
+      // style={{
+      //   width: name ? "auto" : `${width}px`,
+      // }}
     >
       <div
-        style={{
-          width: `${width}px`,
-          aspectRatio: "1/1",
-          borderRadius: "50%",
-          overflow: "hidden",
-        }}
+        className={styles.image}
+        style={{ width: `${width}px`, height: `${width}px` }}
       >
-        <img
-          src={imageUrl}
-          alt="Avatar"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        <img src={imageUrl} alt="Avatar" className={styles.avatarImage} />
       </div>
-      {name === false && (
-        <div>
-          <h3 style={{ margin: "0", marginBottom: "5px" }}>{name}</h3>
-          <p style={{ margin: "0" }}>{profession}</p>
+      {name !== false && (
+        <div className={styles.userInfo}>
+          <h3>{userName}</h3>
+          <p>Autor de la publicación</p>
         </div>
       )}
     </div>

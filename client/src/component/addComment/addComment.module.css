@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 500px 170px;
+  place-content: center;
+}
+.custominput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

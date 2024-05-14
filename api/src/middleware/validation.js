@@ -33,7 +33,7 @@ module.exports = {
       if (!utils.validateContentLength(req.body.title, 100)) {
         throw new CustomError(400, "Lalongitud de titulo supera el limite.");
       }
-      if (!utils.validateContentLength(req.body.content, 5000)) {
+      if (!utils.validateContentLength(req.body.content, 200000)) {
         throw new CustomError(400, "Lalongitud de titulo supera el limite.");
       }
       if (!utils.validImage(req.body.image)) {
