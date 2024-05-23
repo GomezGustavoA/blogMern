@@ -1,0 +1,28 @@
+@import "../../utils/paletteColors.css";
+.container {
+  width: 500px;
+  border-radius: 20px;
+  background-color: var(--input-bg-color);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-wrap: break-word;
+  z-index: 1;
+}
+.likeButton {
+  display: flex;
+  justify-content: end;
+  background-color: var(--input-bg-color);
+  width: 100px;
+  border-radius: 0 25px 25px 0;
+  position: absolute;
+  top: 0;
+  right: -45px;
+  z-index: 0;
+}

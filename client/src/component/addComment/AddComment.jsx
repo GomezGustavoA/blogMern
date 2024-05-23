@@ -1,22 +1,31 @@
+import React, { useEffect, useState } from "react";
 import CustomInput from "../customInput/CustomImput";
 import Comment from "../iconsSVG/Comment";
-import LikeButton from "../likeButton/LikeButton";
 import SubmitButton from "../submitButton/SubmitButton";
 import styles from "./addComment.module.css";
+import { useDispatch } from "react-redux";
+import { createComment } from "../../redux/commentSlice";
+import { getPosts } from "../../redux/publicationSlice";
 
-import React, { useState } from "react";
-
-function AddComment({ onSubmit }) {
+function AddComment({ publication }) {
+  const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-
   const handleChange = (e) => {
     setComment(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(comment);
-    setComment("");
+    dispatch(createComment({ text: comment, publication }))
+      .then(() => {
+        // Después de que se complete la acción de crear el comentario,
+        // restablecer el estado local del comentario a una cadena vacía
+        setComment("");
+        // Obtén las publicaciones actualizadas
+        dispatch(getPosts());
+      })
+      .catch((error) => {
+        console.error("Error al crear el comentario:", error);
+      });
   };
 
   return (
@@ -37,7 +46,6 @@ function AddComment({ onSubmit }) {
         />
       </div>
       <div className={styles.btn}>
-        <LikeButton />
         <SubmitButton text={"Enviar"} width={80} height={40} />
       </div>
     </form>

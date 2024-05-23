@@ -23,27 +23,29 @@ const DropdownMenu = ({ avatar, items, width, left }) => {
         style={{ width: `${width}px` }}
       >
         {React.cloneElement(avatar, { toogle: isOpen })}
-        <ul
-          ref={menuRef}
-          className={`${styles.menu} ${isOpen ? styles.open : ""}`}
-          style={{ left: `${left}px` }}
-        >
-          {items.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => {
-                closeMenu();
-                item.funct && item.funct();
-              }}
-            >
-              {item.to ? (
-                <Link to={item.to}>{item.text}</Link>
-              ) : (
-                <span>{item.name}</span>
-              )}
-            </li>
-          ))}
-        </ul>
+        {items && (
+          <ul
+            ref={menuRef}
+            className={`${styles.menu} ${isOpen ? styles.open : ""}`}
+            style={{ left: `${left}px` }}
+          >
+            {items.map((item, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  closeMenu();
+                  item.funct && item.funct();
+                }}
+              >
+                {item.to ? (
+                  <Link to={item.to}>{item.text}</Link>
+                ) : (
+                  <span>{item.name}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

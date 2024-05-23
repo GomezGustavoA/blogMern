@@ -37,6 +37,7 @@
   background-color: var(--bg-singin-up);
   border-top: 1px solid var(--fotter-bg-color);
   border-left: 1px solid var(--fotter-bg-color);
+  z-index: -1;
 }
 
 .menu li {

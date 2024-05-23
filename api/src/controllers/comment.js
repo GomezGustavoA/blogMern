@@ -32,7 +32,9 @@ module.exports = {
   postCreateComment: async (req, res) => {
     try {
       req.body.author = req.user.id;
+      console.log(req.body);
       const newComment = await Comment.create(req.body);
+      console.log(newComment);
       const updatePublication = await Publication.findByIdAndUpdate(
         req.body.publication,
         { $push: { comment: newComment._id } },
@@ -101,6 +103,7 @@ module.exports = {
   },
   putToggleLike: async (req, res) => {
     try {
+      console.log(req.body.comment);
       const newToggleLike = await dataTransform.toggleLike(
         Comment,
         req.body.comment,

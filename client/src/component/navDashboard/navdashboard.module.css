@@ -1,0 +1,36 @@
+@import "../../utils/paletteColors.css";
+.container {
+  width: 100;
+}
+.imgAndLink {
+  height: 50px;
+  display: grid;
+  grid-template-columns: 35px 100px;
+  transition: background-color 0.3s, margin-left 0.3s, box-shadow 0.3s;
+}
+.imgAndLink:hover {
+  background-color: var(--p-text-suave);
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.container ul li a {
+  text-decoration: none;
+  color: var(--Link-color); /* Color de los enlaces */
+}
+.container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

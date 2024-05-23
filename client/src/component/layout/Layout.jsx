@@ -8,7 +8,6 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.LayoutContainer}>
       <Header />
-
       <main>
         {children}
         <ToastContainer />

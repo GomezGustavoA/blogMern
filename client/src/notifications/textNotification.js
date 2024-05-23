@@ -8,6 +8,8 @@ const textNotification = {
     registrationError: "¡Error al registrar usuario!",
     loginError: "¡Error al iniciar sesión, verifique los campos requeridos!",
     postError: "¡Error al crear la publicación!",
+    likeError: "!Hubo un Problema al dar Like¡",
+    CommentError: "¡Error al crear el comentario!",
   },
   info: {
     duplicateUserError: "¡El usuario ingresado ya existe!",

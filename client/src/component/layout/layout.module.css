@@ -1,9 +1,6 @@
 .LayoutContainer {
   display: grid;
-  grid-template-rows: 60px auto 100px; /* Define tres filas: 200px para el header, auto para el main (ocupa el espacio restante) y 100px para el footer */
-  grid-template-columns: 1fr; /* Solo una columna */
-  min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% del viewport */
-}
-.Main {
-  grid-row: 2; /* El main ocupará la segunda fila */
+  grid-template-rows: 60px auto 100px;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
 }

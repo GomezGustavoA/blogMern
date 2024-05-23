@@ -9,6 +9,24 @@ const config = {
     Authorization: token,
   },
 };
+export const likePost = createAsyncThunk(
+  "publication/likePost",
+  async (publication) => {
+    try {
+      const { data } = await axios.put(
+        "http://localhost:5000/api/posts/likes",
+        { publication },
+        config
+      );
+      return data;
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        return notification.error(textNotification.error.postError);
+      }
+    }
+  }
+);
 
 export const createPost = createAsyncThunk(
   "publication/createPost",
@@ -19,11 +37,11 @@ export const createPost = createAsyncThunk(
         dataPost,
         config
       );
-      return notification.success(textNotification.success.postCreated);
+      return data;
     } catch (error) {
       if (error) {
         console.log(error);
-        return notification.error(textNotification.error.postError);
+        return notification.error(textNotification.error.likeError);
       }
     }
   }
@@ -50,9 +68,16 @@ const publicationSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getPosts.fulfilled, (state, action) => {
-      state.publication = action.payload;
-    });
+    builder
+      .addCase(getPosts.fulfilled, (state, action) => {
+        state.publication = action.payload;
+      })
+      .addCase(likePost.fulfilled, (state, action) => {
+        const updatedPost = action.payload;
+        state.publication = state.publication.map((post) =>
+          post._id === updatedPost._id ? updatedPost : post
+        );
+      });
   },
 });
 export const {} = publicationSlice.actions;

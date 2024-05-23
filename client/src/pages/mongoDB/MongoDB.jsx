@@ -1,5 +1,11 @@
+import Dashboard from "../dashboard/Dashboard";
+
 const MongoDB = () => {
-  return <div>MongoDB</div>;
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 };
 
 export default MongoDB;

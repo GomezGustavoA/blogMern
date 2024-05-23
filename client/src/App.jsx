@@ -1,13 +1,12 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
 import Layout from "./component/layout/Layout";
-import Home from "./pages/home/Home";
-import SignIn from "./pages/signIn/SignIn";
-import SignUp from "./pages/signUp/SignUp";
 import "./App.css";
 import { useEffect } from "react";
 import { signForce } from "./redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "./redux/publicationSlice";
+import AppRouter from "./router/AppRouter";
+import { useNavigate } from "react-router-dom";
+import Home from "./pages/home/Home";
 
 function App() {
   const navigate = useNavigate();
@@ -16,8 +15,8 @@ function App() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    dispatch(getPosts());
     if (token && !user) {
+      dispatch(getPosts());
       dispatch(signForce());
       navigate("/");
     }
@@ -25,11 +24,9 @@ function App() {
   return (
     <>
       <Layout>
-        <Routes>
-          <Route path="*" element={<Home />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-        </Routes>
+        <Home>
+          <AppRouter />
+        </Home>
       </Layout>
     </>
   );

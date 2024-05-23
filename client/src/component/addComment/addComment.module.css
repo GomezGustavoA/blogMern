@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   display: grid;
-  grid-template-columns: 500px 170px;
+  grid-template-columns: 500px 100px;
   place-content: center;
 }
 .custominput {

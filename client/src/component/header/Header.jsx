@@ -3,27 +3,23 @@ import Avatar from "../avatarUser/AvatarUser";
 import Nav from "../nav/Nav";
 import styles from "./header.module.css";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
+import { navLinks } from "../../utils/constant/navLinks";
 import { logout } from "../../redux/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+
   const handleLogout = () => {
     dispatch(logout());
   };
-  const navLinks = [
-    { to: "/", text: "Home" },
-    { to: "/blog", text: "Blog" },
-    { to: "/sign-up", text: "SignUp" },
-    { to: "/sign-in", text: "SignIn" },
-  ];
+
   const items = [
-    { to: "/", text: "Home" },
-    { to: "/blog", text: "Blog" },
-    { to: "/sign-up", text: "SignUp" },
-    { to: "/sign-in", text: "SignIn" },
+    { to: "/private/dashboard", text: "Configuración" },
+    { to: "/private/mern", text: "Publicacion" },
     { name: "logout", funct: handleLogout },
   ];
+
   return (
     <header className={styles.headerContainer}>
       <div className={styles.Logo}>
@@ -33,10 +29,14 @@ const Header = () => {
       <div className={styles.navAndAvatar}>
         <Nav links={navLinks} />
 
-        <DropdownMenu
-          avatar={<Avatar imageUrl={user?.image} width={40} />}
-          items={items}
-        />
+        {user ? (
+          <DropdownMenu
+            avatar={<Avatar imageUrl={user?.image} width={40} />}
+            items={items}
+          />
+        ) : (
+          <DropdownMenu avatar={<Avatar imageUrl={user?.image} width={40} />} />
+        )}
       </div>
     </header>
   );

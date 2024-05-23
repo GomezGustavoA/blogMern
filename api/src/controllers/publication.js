@@ -124,6 +124,7 @@ module.exports = {
     }
   },
   putToggleLike: async (req, res) => {
+    console.log(req.body);
     try {
       const newToggleLike = await dataTransform.toggleLike(
         Publication,

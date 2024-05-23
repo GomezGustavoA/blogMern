@@ -4,7 +4,6 @@ import styles from "./viewPost.module.css";
 import Chip from "../chip/Chip";
 
 function ViewPost({ post }) {
-  console.log(post);
   // Función para truncar el contenido HTML
   const truncateHTML = (htmlContent, maxLength) => {
     // Truncar la cadena de HTML si es más larga que maxLength
